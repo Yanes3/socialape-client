@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import createTheme from "@material-ui/core/styles/createTheme";
+
 
 import Navbar from "./components/navbar";
 
@@ -11,7 +12,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: "#33c9dc",

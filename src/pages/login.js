@@ -1,44 +1,19 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid";
 import AppIcon from "../images/icon.jpg";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { CircularProgress } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const styles = {
-  form: {
-    textAlign: "center",
-  },
-  image: {
-    margin: "20px auto 20px auto",
-    width: "25%",
-  },
-  pageTitle: {
-    margin: "20px auto 20px auto",
-  },
-  textField: {
-    margin: "10px auto 10px auto",
-  },
-  button: {
-    marginTop: 20,
-    marginBottom: 20,
-    position: "relative",
-  },
-  customError: {
-    color: "red",
-    fontSize: "0.8rem",
-    marginTop: 10,
-  },
-  progress: {
-    position: "absolute",
-  },
-};
-
+const styles = (theme) => ({
+  ...theme
+})
 class Login extends Component {
   constructor() {
     super();
@@ -62,6 +37,7 @@ class Login extends Component {
       .post("/login", userData)
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         this.setState({
           loading: false,
         });
@@ -134,7 +110,7 @@ class Login extends Component {
             </Button>
             <br />
             <small>
-              dont have an account? sign up <a href="/signup">here</a>
+              Dont have an account? sign up <Link href="/signup">here</Link>
             </small>
           </form>
         </Grid>

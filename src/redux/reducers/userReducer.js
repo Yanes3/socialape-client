@@ -15,6 +15,8 @@ const initialState = {
   notifications: [],
 };
 
+//No funciona Correctamente boton de likes
+
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_AUTHENTICATED:

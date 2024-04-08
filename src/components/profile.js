@@ -10,12 +10,14 @@ import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import EditDetails from "../components/EditDetails";
 
 
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 import { connect } from "react-redux";
 import { logoutUser, uploadImage } from "../redux/actions/userActions";
@@ -79,6 +81,9 @@ export class profile extends Component {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
   }
+  handleLogout = () => {
+    this.props.logoutUser();
+  }
   render() {
     const {
       classes,
@@ -138,6 +143,12 @@ export class profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
+            <Tooltip title="Logout" placement="top">
+              <IconButton onClick={this.props.logoutUser}>
+                <EditIcon color="primary" />
+              </IconButton>
+            </Tooltip>
+            <EditDetails />
           </div>
         </Paper>
       ) : (
